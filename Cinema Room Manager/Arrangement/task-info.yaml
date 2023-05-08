@@ -77,6 +77,12 @@ files:
         }
     }
   learner_created: false
+- name: src/cinema/CinemaArea.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/133/stages/709/implement#comment
-status: Unchecked
-record: -1
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Mon, 08 May 2023 19:52:40 UTC"
+record: 1
