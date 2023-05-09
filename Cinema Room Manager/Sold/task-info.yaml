@@ -163,6 +163,12 @@ files:
         }
     }
   learner_created: true
-feedback_link: https://hyperskill.org/projects/133/stages/710/implement#comment
-status: Unchecked
-record: -1
+- name: src/cinema/CinemaBilling.java
+  visible: true
+  learner_created: true
+feedback_link: https://hyperskill.org/learn/step/11106#comment
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Tue, 09 May 2023 14:34:16 UTC"
+record: 2

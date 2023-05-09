@@ -29,4 +29,8 @@ final public class CinemaArea {
             System.out.println();
         }
     }
+
+    public int total() {
+        return rows * seats;
+    }
 }

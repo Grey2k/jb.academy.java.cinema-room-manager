@@ -1,13 +1,21 @@
 package cinema;
 
+import java.util.Scanner;
+
 public class Cinema {
-
-    final private static int ROWS = 7;
-    final private static int SEATS = 8;
     public static void main(String[] args) {
-        // Write your code here
-        CinemaArea area = new CinemaArea(ROWS, SEATS);
+        Scanner scanner = new Scanner(System.in);
 
-        area.print();
+        System.out.println("Enter the number of rows:");
+        int rows = scanner.nextInt();
+
+        System.out.println("Enter the number of seats in each row:");
+        int seats = scanner.nextInt();
+
+        CinemaArea area = new CinemaArea(rows, seats);
+        CinemaBilling billing = new CinemaBilling(area);
+
+        System.out.println("Total income:");
+        System.out.printf("$%d%n", billing.totalIncome());
     }
 }
