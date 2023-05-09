@@ -7,6 +7,7 @@ public class CinemaBilling {
     final private static int BACK_SEAT_PRICE = 8;
 
     final private CinemaArea cinema;
+
     public CinemaBilling(CinemaArea area) {
         cinema = area;
     }
@@ -14,10 +15,9 @@ public class CinemaBilling {
     public int totalIncome() {
         int total = 0;
 
-        if(cinema.total() <= SMALL_CINEMA) {
+        if (cinema.total() <= SMALL_CINEMA) {
             total = cinema.total() * FRONT_SEAT_PRICE;
-        }
-        else {
+        } else {
             int frontRows = cinema.rows / 2;
             int backRows = cinema.rows - frontRows;
 
@@ -26,5 +26,17 @@ public class CinemaBilling {
         }
 
         return total;
+    }
+
+    public void book(CinemaSeat seat) {
+        cinema.plan[seat.row - 1][seat.seat - 1] = "B";
+    }
+
+    public int getPrice(CinemaSeat seat) {
+        if (cinema.total() <= SMALL_CINEMA) {
+            return FRONT_SEAT_PRICE;
+        }
+
+        return seat.row <= cinema.rows / 2 ? FRONT_SEAT_PRICE : BACK_SEAT_PRICE;
     }
 }

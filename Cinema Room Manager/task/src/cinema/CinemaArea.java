@@ -13,6 +13,7 @@ final public class CinemaArea {
     }
 
     public void print() {
+        System.out.println();
         System.out.println("Cinema:");
         System.out.print(" ");
         for (int i = 1; i <= seats; i++) {
@@ -28,6 +29,7 @@ final public class CinemaArea {
             }
             System.out.println();
         }
+        System.out.println();
     }
 
     public int total() {
