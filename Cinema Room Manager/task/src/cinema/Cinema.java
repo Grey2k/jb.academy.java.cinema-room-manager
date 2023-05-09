@@ -14,21 +14,8 @@ public class Cinema {
         int seats = scanner.nextInt();
 
         CinemaArea area = new CinemaArea(rows, seats);
-        CinemaBilling billing = new CinemaBilling(area);
+        CinemaManager manager = new CinemaManager(area);
 
-        area.print();
-
-        // book a seat
-        System.out.println("Enter a row number:");
-        int rowNum = scanner.nextInt();
-        System.out.println("Enter a seat number in that row:");
-        int seatNum = scanner.nextInt();
-
-        CinemaSeat seat = new CinemaSeat(rowNum, seatNum);
-        billing.book(seat);
-
-        // print result
-        System.out.printf("%nTicket price: $%d%n", billing.getPrice(seat));
-        area.print();
+        manager.run();
     }
 }

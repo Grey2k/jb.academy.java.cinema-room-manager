@@ -341,6 +341,113 @@ files:
         }
     }
   learner_created: false
+- name: src/cinema/CinemaBilling.java
+  visible: true
+  text: |
+    package cinema;
+
+    public class CinemaBilling {
+
+        final private static int SMALL_CINEMA = 60;
+        final private static int FRONT_SEAT_PRICE = 10;
+        final private static int BACK_SEAT_PRICE = 8;
+
+        final private CinemaArea cinema;
+
+        public CinemaBilling(CinemaArea area) {
+            cinema = area;
+        }
+
+        public int totalIncome() {
+            int total = 0;
+
+            if (cinema.total() <= SMALL_CINEMA) {
+                total = cinema.total() * FRONT_SEAT_PRICE;
+            } else {
+                int frontRows = cinema.rows / 2;
+                int backRows = cinema.rows - frontRows;
+
+                total = frontRows * cinema.seats * FRONT_SEAT_PRICE +
+                        backRows * cinema.seats * BACK_SEAT_PRICE;
+            }
+
+            return total;
+        }
+
+        public void book(CinemaSeat seat) {
+            cinema.plan[seat.row - 1][seat.seat - 1] = "B";
+        }
+
+        public int getPrice(CinemaSeat seat) {
+            if (cinema.total() <= SMALL_CINEMA) {
+                return FRONT_SEAT_PRICE;
+            }
+
+            return seat.row <= cinema.rows / 2 ? FRONT_SEAT_PRICE : BACK_SEAT_PRICE;
+        }
+    }
+  learner_created: true
+- name: src/cinema/CinemaArea.java
+  visible: true
+  text: |
+    package cinema;
+
+    final public class CinemaArea {
+
+        final public String[][] plan;
+        final public int rows;
+        final public int seats;
+
+        public CinemaArea(int rows, int seats) {
+            this.rows = rows;
+            this.seats = seats;
+            this.plan = new String[this.rows][this.seats];
+        }
+
+        public void print() {
+            System.out.println();
+            System.out.println("Cinema:");
+            System.out.print(" ");
+            for (int i = 1; i <= seats; i++) {
+                System.out.printf(" %d", i);
+            }
+            System.out.println();
+
+            // Printing seats
+            for (int i = 0; i < rows; i++) {
+                System.out.print(i + 1);
+                for (int j = 0; j < seats; j++) {
+                    System.out.printf(" %s", plan[i][j] == null ? "S" : plan[i][j]);
+                }
+                System.out.println();
+            }
+            System.out.println();
+        }
+
+        public int total() {
+            return rows * seats;
+        }
+    }
+  learner_created: true
+- name: src/cinema/CinemaSeat.java
+  visible: true
+  text: |
+    package cinema;
+
+    final public class CinemaSeat {
+
+        final public int row;
+        final public int seat;
+
+        public CinemaSeat(int row, int seat) {
+            this.row = row;
+            this.seat = seat;
+        }
+    }
+  learner_created: true
+- name: src/cinema/CinemaManager.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/11108#comment
 status: Unchecked
 record: -1

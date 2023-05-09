@@ -29,7 +29,6 @@ final public class CinemaArea {
             }
             System.out.println();
         }
-        System.out.println();
     }
 
     public int total() {
