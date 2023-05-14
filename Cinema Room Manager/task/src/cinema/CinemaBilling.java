@@ -6,9 +6,11 @@ public class CinemaBilling {
     final private static int FRONT_SEAT_PRICE = 10;
     final private static int BACK_SEAT_PRICE = 8;
 
-    final private CinemaArea cinema;
+    final private CinemaHall cinema;
 
-    public CinemaBilling(CinemaArea area) {
+    private int currentIncome = 0;
+
+    public CinemaBilling(CinemaHall area) {
         cinema = area;
     }
 
@@ -18,18 +20,37 @@ public class CinemaBilling {
         if (cinema.total() <= SMALL_CINEMA) {
             total = cinema.total() * FRONT_SEAT_PRICE;
         } else {
-            int frontRows = cinema.rows / 2;
-            int backRows = cinema.rows - frontRows;
+            int frontRows = cinema.rowsTotal / 2;
+            int backRows = cinema.rowsTotal - frontRows;
 
-            total = frontRows * cinema.seats * FRONT_SEAT_PRICE +
-                    backRows * cinema.seats * BACK_SEAT_PRICE;
+            total = frontRows * cinema.seatsTotal * FRONT_SEAT_PRICE +
+                    backRows * cinema.seatsTotal * BACK_SEAT_PRICE;
         }
 
         return total;
     }
 
-    public void book(CinemaSeat seat) {
-        cinema.plan[seat.row - 1][seat.seat - 1] = "B";
+    public int currentIncome() {
+        return currentIncome;
+    }
+
+    public CinemaSeat buy(int rowNum, int seatNum) {
+        CinemaSeat seat;
+
+        try {
+            seat = cinema.seats[rowNum - 1][seatNum - 1];
+        } catch (IndexOutOfBoundsException any) {
+            throw new RuntimeException("Wrong input!");
+        }
+
+        if (seat.sold) {
+            throw new RuntimeException("That ticket has already been purchased!");
+        }
+
+        seat.sold = true;
+        currentIncome += getPrice(seat);
+
+        return seat;
     }
 
     public int getPrice(CinemaSeat seat) {
@@ -37,6 +58,6 @@ public class CinemaBilling {
             return FRONT_SEAT_PRICE;
         }
 
-        return seat.row <= cinema.rows / 2 ? FRONT_SEAT_PRICE : BACK_SEAT_PRICE;
+        return seat.row <= cinema.rowsTotal / 2 ? FRONT_SEAT_PRICE : BACK_SEAT_PRICE;
     }
 }

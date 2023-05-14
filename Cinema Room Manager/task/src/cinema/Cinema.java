@@ -13,7 +13,7 @@ public class Cinema {
         System.out.println("Enter the number of seats in each row:");
         int seats = scanner.nextInt();
 
-        CinemaArea area = new CinemaArea(rows, seats);
+        CinemaHall area = new CinemaHall(rows, seats);
         CinemaManager manager = new CinemaManager(area);
 
         manager.run();

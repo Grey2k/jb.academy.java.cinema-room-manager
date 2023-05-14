@@ -715,7 +715,23 @@ files:
         }
     }
   learner_created: true
-- name: src/cinema/CinemaArea.java
+- name: src/cinema/CinemaSeat.java
+  visible: true
+  text: |
+    package cinema;
+
+    final public class CinemaSeat {
+
+        final public int row;
+        final public int seat;
+
+        public CinemaSeat(int row, int seat) {
+            this.row = row;
+            this.seat = seat;
+        }
+    }
+  learner_created: true
+- name: src/cinema/CinemaHall.java
   visible: true
   text: |
     package cinema;
@@ -756,22 +772,10 @@ files:
         }
     }
   learner_created: true
-- name: src/cinema/CinemaSeat.java
-  visible: true
-  text: |
-    package cinema;
-
-    final public class CinemaSeat {
-
-        final public int row;
-        final public int seat;
-
-        public CinemaSeat(int row, int seat) {
-            this.row = row;
-            this.seat = seat;
-        }
-    }
-  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/11109#comment
-status: Unchecked
+status: Solved
+feedback:
+  message: Well done! You've finished the project. Select a new project on <a href="https://hyperskill.org/projects">Hyperskill</a>
+    to continue learning.
+  time: "Sun, 14 May 2023 20:38:08 UTC"
 record: -1
